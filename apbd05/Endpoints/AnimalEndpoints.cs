@@ -5,6 +5,7 @@ namespace apbd05.Endpoints;
 
 public static class AnimalEndpoints
 {
+    
     public static void MapAnimalsEndpoints(this WebApplication app)
     {
         app.MapGet("/animals", () =>
@@ -13,6 +14,11 @@ public static class AnimalEndpoints
         });
         app.MapPost("/animals", (Animal animal) =>
         {
+            var animalExist = StaticDb.Animals.FirstOrDefault(a => a.Id == animal.Id);
+            if (animalExist != null)
+            {
+                return Results.Conflict($"Animal with id {animal.Id} already exist");
+            }
             StaticDb.Animals.Add(animal);
             return Results.Created("", animal);
         });

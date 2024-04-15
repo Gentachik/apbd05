@@ -4,6 +4,6 @@ namespace apbd05.DataBase;
 
 public class StaticDb
 {
-    public static HashSet<Animal> Animals { get; set; }
-    public static HashSet<Visit> Visits { get; set; }
+    public static List<Animal> Animals { get; set; }=new List<Animal>();
+    public static List<Visit> Visits { get; set; } = new List<Visit>();
 }
